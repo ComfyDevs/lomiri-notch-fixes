@@ -32,7 +32,7 @@ if [ ! -e $DIFF ]; then
 	mkdir -p $WORK
 	function fetchPatches(){
 		echo ">> Fetching patches for $DEVICE..."
-		if ! wget -O $DIFF https://raw.githubusercontent.com/ComfyDevs/lomiri-notch-fixes/main/patches/$DEVICE.diff; then
+		if ! wget -q -O $DIFF https://raw.githubusercontent.com/ComfyDevs/lomiri-notch-fixes/main/patches/$DEVICE.diff; then
 			echo ">> ERROR: There isn't a patch for your device ($DEVICE)"
 			echo "If you believe this is wrong, or want to request a patch for your device, create an issue on GitHub"
 			echo "https://github.com/ComfyDevs/lomiri-notch-fixes"
@@ -40,7 +40,7 @@ if [ ! -e $DIFF ]; then
 			echo "Alternatively, you can try a patch for another device that might work on yours"
 			function getdeviceandfetchpatches(){
 				read -p "What device? " ans
-				DEVICE="$(echo '$ans' | tr '[:upper:]' '[:lower:]')"
+				DEVICE="$(echo $ans | tr '[:upper:]' '[:lower:]')"
 				fetchPatches
 			}
 			read -p "Use another device's patch? (y/N) " ans
