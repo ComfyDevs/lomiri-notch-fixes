@@ -11,13 +11,13 @@ Lomiri patches for improved display notch and rounded corners support on phones.
 ## Applying the patch
 Simply run the script in this repo as the `phablet` user:
 ```bash
-wget -O apply-notch-hax.sh https://git.io/JtIpG
-chmod +x apply-notch-hax.sh
-./apply-notch-hax.sh
+wget -O apply-fixes.sh https://git.io/J2sUx
+chmod +x apply-fixes.sh
+./apply-fixes.sh
 ```
 
 ## Reversing the patch
-You can just run the same `apply-notch-hax.sh` script again while answering `y` to each of the `Assume -R?` questions :)
+You can just run the same `apply-fixes.sh` script again while answering `y` to each of the `Assume -R?` questions :)
 
 ## Screenshots
 
