@@ -6,7 +6,7 @@ if [ $UID -eq 0 ]; then
 	exit 1
 fi
 
-WORK="$HOME/.cache/unity8-notch-hax"
+WORK="$HOME/.cache/lomiri-notch-fixes"
 DEVICE="$1"
 
 if [ -z "$DEVICE" ]; then
@@ -18,7 +18,7 @@ if [ "$DEVICE" = "halium_arm64" ]; then
 	echo ">> Detected halium_arm64 systemimage; trying alternative getprop..."
 	DEVICE="$(getprop ro.product.vendor.device)" # e.g. 'OnePlus6'
 	if [ "$DEVICE" = "merlinnfc" -o "$DEVICE" = "merlinx" ]; then
-		DEVICE = "merlin"
+		DEVICE="merlin"
 	fi
 fi
 
@@ -47,7 +47,9 @@ fi
 if ! hash patch 2>/dev/null; then
 	echo ">> System utility 'patch' not found, starting installation..."
 	mount | grep -q ' / .*ro' && sudo mount -o remount,rw /
-	sudo apt install -y patch
+	sudo cat /dev/null
+	sudo apt update -yqq > /dev/null
+	sudo apt install -yqq patch > /dev/null
 fi
 
 echo ">> Copying system files to patch & checking compatability..."
