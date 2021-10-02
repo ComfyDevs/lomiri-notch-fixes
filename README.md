@@ -1,11 +1,12 @@
 # unity8-notch-hax
-Lomiri (formely Unity 8) patches for improved display notch and rounded corners support on devices such as the Volla Phone.
+Lomiri patches for improved display notch and rounded corners support on phones.
 
 ## Supported devices
 * Volla Phone
 * OnePlus 6/6T
 * Xiaomi Poco F1
 * Xiaomi Redmi Note 7
+* Xiaomi Redmi Note 9
 
 ## Applying the patch
 Simply run the script in this repo as the `phablet` user:
