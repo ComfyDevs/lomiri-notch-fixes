@@ -12,6 +12,9 @@ DEVICE="$1"
 if [ -z "$DEVICE" ]; then
 	echo ">> No device specified, detecting device name..."
 	DEVICE="$(getprop ro.product.device)" # e.g. 'yggdrasil'
+	if [ "$DEVICE" = "merlinnfc" -o "$DEVICE" = "merlinx" ]; then
+		DEVICE="merlin"
+	fi
 fi
 
 if [ "$DEVICE" = "halium_arm64" ]; then
