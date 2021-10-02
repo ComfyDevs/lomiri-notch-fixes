@@ -11,7 +11,7 @@ Lomiri patches for improved display notch and rounded corners support on phones.
 ## Applying the patch
 Simply run the script in this repo as the `phablet` user:
 ```bash
-wget -O apply-fixes.sh https://git.io/J2sUx
+wget -O apply-fixes.sh https://git.io/J2sT7
 chmod +x apply-fixes.sh
 ./apply-fixes.sh
 ```
