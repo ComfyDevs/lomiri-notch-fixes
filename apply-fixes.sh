@@ -17,6 +17,9 @@ fi
 if [ "$DEVICE" = "halium_arm64" ]; then
 	echo ">> Detected halium_arm64 systemimage; trying alternative getprop..."
 	DEVICE="$(getprop ro.product.vendor.device)" # e.g. 'OnePlus6'
+	if [ "$DEVICE" = "merlinnfc" -o "$DEVICE" = "merlinx" ]; then
+		DEVICE = "merlin"
+	fi
 fi
 
 echo ">> Device is '$DEVICE'"
