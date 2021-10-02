@@ -4,9 +4,12 @@ Lomiri patches for improved display notch and rounded corners support on phones.
 ## Supported devices
 * Volla Phone
 * OnePlus 6/6T
+* OnePlus 7 Pro
 * Xiaomi Poco F1
+* Xiaomi Redmi 7
 * Xiaomi Redmi Note 7
 * Xiaomi Redmi Note 9
+* Xiaomi Redmi Note 9S
 
 ## Applying the patch
 Simply run the script in this repo as the `phablet` user:
