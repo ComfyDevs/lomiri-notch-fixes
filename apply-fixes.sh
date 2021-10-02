@@ -33,9 +33,11 @@ if [ ! -e $DIFF ]; then
 	function fetchPatches(){
 		echo ">> Fetching patches for $DEVICE..."
 		if ! wget -O $DIFF https://raw.githubusercontent.com/ComfyDevs/lomiri-notch-fixes/main/patches/$DEVICE.diff; then
-			echo "ERROR: There isn't a patch for your device ($DEVICE)"
-			echo "If you believe this is wrong, or want to request a patch for your device, create an issue on github"
-			echo "Alternatively, you can use a patch for another device that might work on yours"
+			echo ">> ERROR: There isn't a patch for your device ($DEVICE)"
+			echo "If you believe this is wrong, or want to request a patch for your device, create an issue on GitHub"
+			echo "https://github.com/ComfyDevs/lomiri-notch-fixes"
+			echo
+			echo "Alternatively, you can try a patch for another device that might work on yours"
 			function getdeviceandfetchpatches(){
 				read -p "What device? " ans
 				DEVICE="$(echo '$ans' | tr '[:upper:]' '[:lower:]')"
@@ -68,8 +70,8 @@ done
 
 cd root/
 if ! patch -p1 < $DIFF; then
-	echo ">> ERROR: Some system files are incompatible with the patches;
-          Please adjust '$DEVICE.diff' and try again!"
+	echo ">> ERROR: Some system files are incompatible with the patches for your device ($DEVICE), create an issue on GitHub!"
+	echo ">> https://github.com/ComfyDevs/lomiri-notch-fixes"
 	exit 1
 fi
 cd ../
