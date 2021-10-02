@@ -70,7 +70,7 @@ done
 
 cd root/
 if ! patch -p1 < $DIFF; then
-	echo ">> ERROR: Some system files are incompatible with the patches for your device ($DEVICE), create an issue on GitHub!"
+	echo ">> ERROR: Some system files are incompatible with the patches for your device ($DEVICE), you should report the bug on GitHub"
 	echo ">> https://github.com/ComfyDevs/lomiri-notch-fixes"
 	exit 1
 fi
