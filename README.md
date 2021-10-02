@@ -1,4 +1,4 @@
-# unity8-notch-hax
+# lomiri-notch-fixes
 Lomiri patches for improved display notch and rounded corners support on phones.
 
 ## Supported devices
