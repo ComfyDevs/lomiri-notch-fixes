@@ -7,19 +7,16 @@ if [ $UID -eq 0 ]; then
 fi
 
 WORK="$HOME/.cache/lomiri-notch-fixes"
-echo ">> WORK is $WORK"
 DEVICE="$1"
 
 if [ -z "$DEVICE" ]; then
-	echo ">> No device specified, detecting device name..."
 	DEVICE="$(getprop ro.product.device)" # e.g. 'yggdrasil'
 	if [ "$(getprop ro.product.device)" = "merlinnfc" -o "$(getprop ro.product.device)" = "merlinx" ]; then
-		DEVICE="merlin"
+		DEVICE="merlinn"
 	fi
 fi
 
 if [ "$DEVICE" = "halium_arm64" ]; then
-	echo ">> Detected halium_arm64 systemimage; trying alternative getprop..."
 	DEVICE="$(getprop ro.product.vendor.device)" # e.g. 'OnePlus6'
 	if [ "$(getprop ro.product.vendor.device)" = "merlinnfc" -o "$(getprop ro.product.vendor.device)" = "merlinx" ]; then
 		DEVICE="merlin"
@@ -29,23 +26,30 @@ fi
 echo ">> Device is '$DEVICE'"
 
 DIFF="$WORK/$DEVICE.diff"
-echo ">> Using diff '$DIFF'"
 
 
 if [ ! -e $DIFF ]; then
 	mkdir -p $WORK
-	echo ">> Fetching patches for $DEVICE..."
-	if ! wget -O $DIFF https://raw.githubusercontent.com/ComfyDevs/lomiri-notch-fixes/main/patches/$DEVICE.diff; then
-		echo "ERROR: It seems your device isn't supported by this project;
-       please tune the files on your device manually first,
-       then fork the repo, create a patches/$DEVICE.diff
-       and modify this script to fetch the patches from your
-       fork for testing!
+	function fetchPatches(){
+		echo ">> Fetching patches for $DEVICE..."
+		if ! wget -q -O $DIFF https://raw.githubusercontent.com/ComfyDevs/lomiri-notch-fixes/main/patches/$DEVICE.diff; then
+			echo "ERROR: There isn't a patch for your device ($DEVICE)"
+			echo "If you believe this is wrong, or want to request a patch for your device, create an issue on github"
+			echo "Alternatively, you can use a patch for another device that might work on yours"
+			read -p "Use another device's patch? (y/N) " ans
+			ans = "$(echo '$ans' | tr '[:upper:]' '[:lower:]')"
+			if [ -z "$ans" ] || [ "$ans" = "n" ] || [ "$ans" = "no" ]; then
+				exit 1
+			fi
+			if [ "$ans" = "y" ] || [ "$ans" = "yes" ]; then
+				read -p "What device? " ans
+				DEVICE = "$(echo '$ans' | tr '[:upper:]' '[:lower:]')"
+				fetchPatches
+			fi
 
-       Alternatively, specify a device template to use with
-       '$0 <device>'"
-		exit 1
-	fi
+		fi
+	}
+	fetchPatches
 fi
 
 if ! hash patch 2>/dev/null; then
