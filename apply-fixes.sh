@@ -37,7 +37,9 @@ if [ ! -e $DIFF ]; then
 			echo "If you believe this is wrong, or want to request a patch for your device, create an issue on github"
 			echo "Alternatively, you can use a patch for another device that might work on yours"
 			read -p "Use another device's patch? (y/N) " ans
+			echo $ans
 			ans="$(echo '$ans' | tr '[:upper:]' '[:lower:]')"
+			echo $ans
 			if [ -z "$ans" ] || [ "$ans" = "n" ] || [ "$ans" = "no" ]; then
 				exit 1
 			fi
