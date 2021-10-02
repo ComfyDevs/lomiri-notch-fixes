@@ -12,15 +12,12 @@ DEVICE="$1"
 if [ -z "$DEVICE" ]; then
 	echo ">> No device specified, detecting device name..."
 	DEVICE="$(getprop ro.product.device)" # e.g. 'yggdrasil'
-	if [ "$DEVICE" = "merlinnfc" -o "$DEVICE" = "merlinx" ]; then
-		DEVICE="merlin"
-	fi
 fi
 
 if [ "$DEVICE" = "halium_arm64" ]; then
 	echo ">> Detected halium_arm64 systemimage; trying alternative getprop..."
 	DEVICE="$(getprop ro.product.vendor.device)" # e.g. 'OnePlus6'
-	if [ "$DEVICE" = "merlinnfc" -o "$DEVICE" = "merlinx" ]; then
+	if [ "$(getprop ro.product.vendor.device)" = "merlinnfc" -o "$(getprop ro.product.vendor.device)" = "merlinx" ]; then
 		DEVICE="merlin"
 	fi
 fi
