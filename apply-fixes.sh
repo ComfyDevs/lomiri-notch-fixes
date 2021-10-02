@@ -7,6 +7,7 @@ if [ $UID -eq 0 ]; then
 fi
 
 WORK="$HOME/.cache/lomiri-notch-fixes"
+echo ">> WORK is $WORK"
 DEVICE="$1"
 
 if [ -z "$DEVICE" ]; then
