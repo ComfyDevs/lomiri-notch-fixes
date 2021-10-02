@@ -46,7 +46,7 @@ if [ ! -e $DIFF ]; then
 			read -p "Use another device's patch? (y/N) " ans
 			[[ "${ans^^}" = "Y"* ]] && \
 				getdeviceandfetchpatches || \
-				exit 1
+				rm -rf $WORK && exit 1
 
 		fi
 	}
@@ -72,6 +72,7 @@ cd root/
 if ! patch -p1 < $DIFF; then
 	echo ">> ERROR: Some system files are incompatible with the patches for your device ($DEVICE), you should report the bug on GitHub"
 	echo ">> https://github.com/ComfyDevs/lomiri-notch-fixes"
+	rm -rf $WORK
 	exit 1
 fi
 cd ../
