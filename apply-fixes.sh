@@ -45,8 +45,6 @@ if [ ! -e $DIFF ]; then
 			[[ "${ans^^}" = "Y"* ]] && \
 				getdeviceandfetchpatches || \
 				exit 1
-				
-			fi
 
 		fi
 	}
