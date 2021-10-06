@@ -7,6 +7,7 @@ Lomiri patches for improved display notch and rounded corners support on phones.
 * OnePlus 7 Pro
 * Xiaomi Poco F1
 * Xiaomi Redmi 7
+* Xiaomi Redmi 9
 * Xiaomi Redmi Note 7
 * Xiaomi Redmi Note 9
 * Xiaomi Redmi Note 9S
