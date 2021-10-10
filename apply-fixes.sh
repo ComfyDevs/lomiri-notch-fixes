@@ -12,7 +12,7 @@ DEVICE="$1"
 if [ -z "$DEVICE" ]; then
 	DEVICE="$(getprop ro.product.device)" # e.g. 'yggdrasil'
 	if [ "$(getprop ro.product.device)" = "merlinnfc" -o "$(getprop ro.product.device)" = "merlinx" ]; then
-		DEVICE="merlinn"
+		DEVICE="merlin"
 	fi
 fi
 
